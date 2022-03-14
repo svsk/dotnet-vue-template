@@ -37,6 +37,9 @@ Run the image
 
 Check that the app is running at `http://localhost:8080`
 
+It should display the standard Vue 3 welcome page, with an added component showing "Tomorrow's Weather".
+This component fetches data from the .NET template `WeatherForecastController` backend API endpoint as a
+proof-of-concept.
 
 ## Development
 
