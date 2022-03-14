@@ -1,3 +1,5 @@
+using VueTemplate.Api;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -37,16 +39,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Use(async (context, next) =>
-{
-	await next();
-
-	if (context.Response.StatusCode == 404)
-	{
-		context.Response.StatusCode = 200;
-		context.Response.ContentType = "text/html";
-		await context.Response.SendFileAsync(Path.Combine(builder.Environment.WebRootPath, "index.html"));
-	}
-});
+app.UseFrontendRequestRouting(Path.Combine(builder.Environment.WebRootPath, "index.html"));
 
 app.Run();
